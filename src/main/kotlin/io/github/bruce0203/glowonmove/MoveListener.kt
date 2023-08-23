@@ -12,8 +12,7 @@ class MoveListener(private val config: Config = DEFAULT_CONFIG) : Listener {
     @Suppress("UNUSED")
     @EventHandler
     fun onMove(event: PlayerMoveEvent) {
-        if (event.to.direction != event.player.location.direction) return
-        if (event.to.isSamePosition(event.from)) return
+        if (event.to.isSamePosition(event.player.location)) return
         val player = event.player
         if (player.isOp) return
         val extraPlayer = PlayerExtra[player]
