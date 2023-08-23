@@ -13,7 +13,7 @@ fun playerWatchdog(plugin: Plugin, config: Config = DEFAULT_CONFIG) {
             val delta = (System.currentTimeMillis() - extraPlayer.lastMovedMS)/1000.0*20
             val offset = 3
             if (delta >= offset) extraPlayer.isMovedMessageSent = false
-            if (delta >= config.period && extraPlayer.isGlowing) {
+            if (delta >= offset + config.period && extraPlayer.isGlowing) {
                 extraPlayer.isGlowing = false
                 Bukkit.getPluginManager().callEvent(PlayerGlowStoppedEvent(player))
                 player.sendTitle(config.onGlowCleared)
