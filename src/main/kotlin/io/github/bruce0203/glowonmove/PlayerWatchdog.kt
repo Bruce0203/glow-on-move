@@ -11,7 +11,7 @@ fun playerWatchdog(plugin: Plugin, config: Config = DEFAULT_CONFIG) {
             if (player.isOp) return@forEach
             val extraPlayer = PlayerExtra[player]
             val delta = (System.currentTimeMillis() - extraPlayer.lastMovedMS)/1000.0*20
-            if (delta >= 2) extraPlayer.isMovedMessageSent = false
+            if (delta >= 3) extraPlayer.isMovedMessageSent = false
             if (delta >= config.period && extraPlayer.isGlowing) {
                 extraPlayer.isGlowing = false
                 Bukkit.getPluginManager().callEvent(PlayerGlowStoppedEvent(player))
