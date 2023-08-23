@@ -8,6 +8,7 @@ fun playerWatchdog(plugin: Plugin, config: Config = DEFAULT_CONFIG) {
 
     Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, {
         Bukkit.getOnlinePlayers().forEach { player ->
+            if (player.isOp) return@forEach
             val extraPlayer = PlayerExtra[player]
             val delta = (System.currentTimeMillis() - extraPlayer.lastMovedMS)/1000.0*20
             if (delta >= 2) extraPlayer.isMovedMessageSent = false

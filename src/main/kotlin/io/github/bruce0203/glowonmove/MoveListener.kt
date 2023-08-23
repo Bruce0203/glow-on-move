@@ -11,7 +11,9 @@ class MoveListener(private val config: Config = DEFAULT_CONFIG) : Listener {
     @Suppress("UNUSED")
     @EventHandler
     fun onMove(event: PlayerMoveEvent) {
+        if (event.from.toVector() == event.to.toVector()) return
         val player = event.player
+        if (player.isOp) return
         val extraPlayer = PlayerExtra[player]
         extraPlayer.lastMovedMS = System.currentTimeMillis()
         if (extraPlayer.isMovedMessageSent.not()) {
