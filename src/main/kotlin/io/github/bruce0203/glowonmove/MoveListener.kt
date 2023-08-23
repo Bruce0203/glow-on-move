@@ -5,13 +5,14 @@ import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerMoveEvent
+import org.bukkit.util.Vector
 
 class MoveListener(private val config: Config = DEFAULT_CONFIG) : Listener {
 
     @Suppress("UNUSED")
     @EventHandler
     fun onMove(event: PlayerMoveEvent) {
-        if (event.from.toVector() == event.to.toVector()) return
+        if (event.from.clone().setDirection(Vector()) == event.to.clone().setDirection(Vector())) return
         val player = event.player
         if (player.isOp) return
         val extraPlayer = PlayerExtra[player]
